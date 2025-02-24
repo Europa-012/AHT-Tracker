@@ -238,9 +238,9 @@ function preventNewTime(disableNewTime) {
 }
 
 // TEST CODE BLOCK
-window.onload = () => {
-  newTimeInputBox.value = "10:00";
-  addTime();
-  newTimeInputBox.value = "05:00";
-  addTime();
-}
+// window.onload = () => {
+//   newTimeInputBox.value = "10:00";
+//   addTime();
+//   newTimeInputBox.value = "05:00";
+//   addTime();
+// }
