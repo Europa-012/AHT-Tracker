@@ -172,7 +172,8 @@ function addTime() {
     const newTimeEntry = new TimeEntry(timeValue, newTimeLi);
     
     newTimeLi.appendChild(newTimeEntry);
-    timeListUl.appendChild(newTimeLi);
+    // timeListUl.appendChild(newTimeLi);
+    timeListUl.insertBefore(newTimeLi, timeListUl.children[0]);
     newTimeInputBox.value = '';
     updateAverageTime();
   }
