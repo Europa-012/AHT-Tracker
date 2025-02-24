@@ -12,6 +12,12 @@ class TimeInputBox {
     this.node.addEventListener('keydown', e => {
       let key = e.key;
       if (key === "Backspace" || key === "Delete") e.target.value = '';
+      // else if (key === "Enter") {
+      //   console.log('enter angels high');
+      //   // if (this.node.id === 'newTimeInput') addTime();
+      //   // else if (this.node.id === 'editInputBox') console.log(this.node.id);
+      //   // else console.log('Error: Unknown node ID');
+      // }
     });
 
     return this.node; // return the input box with the 2 behaviors as a node
@@ -47,11 +53,12 @@ class TimeEntry {
   }
 
   edit() {
+    preventNewTime(true);
     const editDiv = document.createElement('div');
 
     const inputBox = document.createElement('input');
     inputBox.setAttribute('type', 'text');
-    // inputBox.id = 'inputBox'; // Add an id to identify this input
+    inputBox.id = 'editInputBox'; // Add an id to identify this input
     inputBox.addEventListener('input', function(e) {
       this.value = formatTime(this.value);
     });
@@ -74,46 +81,88 @@ class TimeEntry {
     // Replace the original text node with the edit interface
     this.parentNode.innerHTML = '';
     this.parentNode.appendChild(editDiv);
+    editTimeInputBox.select();
 
     // Add event listeners for confirmation and cancellation
-    confirmButton.addEventListener('click', this.confirmAction.bind(this));
+    confirmButton.addEventListener('click', this.confirmEdit.bind(this));
     cancelButton.addEventListener('click', this.cancelAction.bind(this));
+    editTimeInputBox.addEventListener('keydown', e => {
+      const key = e.key
+      if (key === "Enter") { this.confirmEdit() }
+      else if (key === "Escape") { this.cancelAction() }
+    });
   }
 
   remove() {
-    const parentLi = this.parentNode;
-    if (parentLi && parentLi.tagName.toLowerCase() === 'li') {
-      parentLi.remove();
-      updateAverageTime();
-    }
+    preventNewTime(true);
+    const removeDiv = document.createElement('div');
+
+    const textLabel = document.createElement('span');
+    textLabel.textContent = 'Remove?';
+
+    const confirmButton = document.createElement('button');
+    confirmButton.textContent = 'Confirm';
+
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'Cancel'
+    
+    // Create a new div to hold the edit interface
+    removeDiv.appendChild(textLabel);
+    removeDiv.appendChild(confirmButton);
+    removeDiv.appendChild(cancelButton);
+
+    // Replace the original text node with the edit interface
+    this.parentNode.innerHTML = '';
+    this.parentNode.appendChild(removeDiv);
+
+    // Add event listeners for confirmation and cancellation
+    confirmButton.addEventListener('click', this.confirmRemove.bind(this));
+    cancelButton.addEventListener('click', this.cancelAction.bind(this));
+
+    // Enabling keyboard shortcuts
+    confirmButton.focus();
+    confirmButton.addEventListener('keydown', e => {
+      const key = e.key
+      if (key === "Enter" || key === "Space") { this.confirmRemove() }
+      else if (key === "Escape") { this.cancelAction() }
+    });
   }
 
-  confirmAction() {
+  confirmEdit() {
     this.parentNode.innerHTML = '';
     this.value = this.editTimeInputBox.value;
     this.textNode.textContent = this.value;
     this.parentNode.appendChild(this.normalDiv);
     updateAverageTime();
+    preventNewTime(false)
+  }
 
-    // TODO: migrate confirmAction() to do both remove and edit actions
-    // TODO: pressing Enter key should also confirm the edit action
+  confirmRemove() {
+    const parentLi = this.parentNode;
+    if (parentLi && parentLi.tagName.toLowerCase() === 'li') {
+      parentLi.remove();
+      updateAverageTime();
+      preventNewTime(false);
+    }
   }
 
   cancelAction() {
     // Go back to initial normalDiv interface
     this.parentNode.innerHTML = '';
     this.parentNode.appendChild(this.normalDiv);
+    preventNewTime(false);
   }
 }
 
 // newTimeInputBox and timeListUl are both GLOBAL variables
-const newTimeInputBox = new TimeInputBox(document.getElementById('timeInput'));
+const newTimeInputBox = new TimeInputBox(document.getElementById('newTimeInput'));
+const newTimeButton = document.getElementById('addTimeButton');
 const timeListUl = document.getElementById('timeList');
 
-// when user Clicks 'Add Time' or presses 'Enter' in 'timeInput',
+// when user Clicks 'Add Time' or presses 'Enter' in 'newTimeInput',
 // then, add the entered time into the list. It calls addTime()
-document.getElementById('addTimeButton').addEventListener('click', addTime);
-newTimeInputBox.addEventListener('keypress', function(e) { if (e.key === 'Enter') addTime(); });
+newTimeButton.addEventListener('click', addTime);
+newTimeInputBox.addEventListener('keypress', e => { if (e.key === 'Enter') addTime(); });
 
 // creates a new entry in the timeList through the HTML
 function addTime() {
@@ -160,6 +209,7 @@ function formatTime(value) {
   if (isNaN(value)) value = ''; // if NaN, turn into empty string
   if (value) {
     // format string (consisting of only digits) into H:MM:SS
+    // TODO: value overflow 60+ mins? 60+ seconds?
     let formattedTime;
     if (value.length <= 2) {
       formattedTime = `${value}`;
@@ -174,6 +224,16 @@ function formatTime(value) {
       formattedTime = `${h}:${m}:${s}`;
     }
     return formattedTime; // return the formatted string
+  }
+}
+
+function preventNewTime(disableNewTime) {
+  if (disableNewTime) {
+    newTimeInputBox.disabled = true;
+    newTimeButton.disabled = true;
+  } else {
+    newTimeInputBox.disabled = false;
+    newTimeButton.disabled = false;
   }
 }
 
