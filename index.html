@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AHT Tracker</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHT Tracker</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
   <body>
-    <header>
-      <h1>AHT Tracker</h1>
-    </header>
     <!-- main body -->
     <div class="container">
+      <h1>AHT Tracker</h1>
       <!-- left panel -->
-      <div class="left-panel">
+      <div class="time-list-panel">
         <input type="text" id="newTimeInput" placeholder="Enter time">
         <button id="addTimeButton">Add Time</button>
         <!-- entries -->
         <ul id="timeList"></ul>
       </div>
       <!-- main panel -->
-      <div class="main-panel">
+      <div class="result-panel">
         <h3>Current AHT</h2>
         <div id="averageTime">00:00:00</div>
       </div>
     </div>
-  
-  <script src="script.js"></script>
-  
+
+    <script src="script.js"></script>
   </body>
-  
-</body>
 </html>
