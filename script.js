@@ -17,7 +17,7 @@ class TimeInputBox {
       //   // if (this.node.id === 'newTimeInput') addTime();
       //   // else if (this.node.id === 'editInputBox') console.log(this.node.id);
       //   // else console.log('Error: Unknown node ID');
-      // }
+      // } // WTF IS THIS????
     });
 
     return this.node; // return the input box with the 2 behaviors as a node
@@ -58,7 +58,7 @@ class TimeEntry {
 
     const inputBox = document.createElement('input');
     inputBox.setAttribute('type', 'text');
-    inputBox.id = 'editInputBox'; // Add an id to identify this input
+    // inputBox.id = 'editInputBox'; // Add an id to identify this input
     inputBox.addEventListener('input', function(e) {
       this.value = formatTime(this.value);
     });
@@ -156,6 +156,7 @@ class TimeEntry {
 
 // newTimeInputBox and timeListUl are both GLOBAL variables
 const newTimeInputBox = new TimeInputBox(document.getElementById('newTimeInput'));
+// newTimeInputBox.focus(); // DON'T FORGET TO ENABLE FOR DEPLOYMENT
 const newTimeButton = document.getElementById('addTimeButton');
 const timeListUl = document.getElementById('timeList');
 
@@ -235,6 +236,7 @@ function preventNewTime(disableNewTime) {
   } else {
     newTimeInputBox.disabled = false;
     newTimeButton.disabled = false;
+    newTimeInputBox.focus();
   }
 }
 
@@ -244,7 +246,7 @@ window.onload = () => {
   // addTime();
   // newTimeInputBox.value = "05:00";
   // addTime();
-  let x = 0
+  let x = 50
   for (i = 0; i < x; i++) {
     newTimeInputBox.value = formatTime(String(Math.floor(Math.random() * 2000) + 1));
     addTime();

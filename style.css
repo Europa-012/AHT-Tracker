@@ -25,28 +25,43 @@ body {
 .time-list-panel {
   display: flex;
   flex-direction: column;
-  flex: 1 1;
+  /* flex: 1 1; */
   padding: 0;
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 .time-list-panel ul {
-  overflow-y: auto;
+  /* overflow-y: auto; */
+}
+.time-list-panel ul li div {
   display: flex;
-  flex-direction: column;
-  flex: 1 0;
+  justify-content: stretch;
+  align-items: center;
+  /* max-width: 60vw; */
+  /* border: 1px solid blue; */
+}
+.time-list-panel ul li span,
+.time-list-panel ul li input[type='text'] {
+  flex-grow: 1;
+  text-align: right;
+  /* border: 1px solid red; */
 }
 .result-panel {
   font-size: 2em;
-  width: fit-content;
-  flex-grow: 0;
+  width: 100vw;
+  position: sticky;
+  bottom: 0;
+  background: rgb(0,18,34);
+  background: radial-gradient(circle, rgba(0,18,34,1) 0%, rgba(15,48,77,1) 30%, rgba(88,116,141,1) 100%);
 }
 .result-panel h3,
 .result-panel div,
 body h1 {
-  margin: 0.4em;
+  margin: 0.4em auto;
+  display: block;
+  width: fit-content;
 }
-input, button {
-  padding: 10px;
+input[type='text'], button {
+  padding: 5px 10px;
   margin: 5px 0;
   font-size: 1em;
 }
