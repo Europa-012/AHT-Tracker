@@ -41,11 +41,13 @@ class TimeEntry {
 
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit';
+    editButton.className = 'time-list-button';
     editButton.addEventListener('click', this.edit.bind(this));
     normalDiv.appendChild(editButton);
 
     const removeButton = document.createElement('button');
     removeButton.textContent = 'Remove';
+    removeButton.className = 'time-list-button';
     removeButton.addEventListener('click', this.remove.bind(this));
     normalDiv.appendChild(removeButton);
 
@@ -170,6 +172,7 @@ function addTime() {
   const timeValue = newTimeInputBox.value;
   if (timeValue) {
     const newTimeLi = document.createElement('li');
+    newTimeLi.className = 'time-list-item';
     const newTimeEntry = new TimeEntry(timeValue, newTimeLi);
     
     newTimeLi.appendChild(newTimeEntry);
@@ -246,7 +249,7 @@ window.onload = () => {
   // addTime();
   // newTimeInputBox.value = "05:00";
   // addTime();
-  let x = 0
+  let x = 3
   for (i = 0; i < x; i++) {
     newTimeInputBox.value = formatTime(String(Math.floor(Math.random() * 2000) + 1));
     addTime();
