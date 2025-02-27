@@ -48,10 +48,11 @@ body {
 .result-panel {
   font-size: 2em;
   width: 100vw;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   background: rgb(0,18,34);
   background: radial-gradient(circle, rgba(0,18,34,1) 0%, rgba(15,48,77,1) 30%, rgba(88,116,141,1) 100%);
+  opacity: 0.7; /* test */
 }
 .result-panel h3,
 .result-panel div,

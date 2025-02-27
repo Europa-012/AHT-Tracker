@@ -246,7 +246,7 @@ window.onload = () => {
   // addTime();
   // newTimeInputBox.value = "05:00";
   // addTime();
-  let x = 50
+  let x = 0
   for (i = 0; i < x; i++) {
     newTimeInputBox.value = formatTime(String(Math.floor(Math.random() * 2000) + 1));
     addTime();
