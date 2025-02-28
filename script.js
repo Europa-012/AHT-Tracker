@@ -93,6 +93,10 @@ class TimeEntry {
       if (key === "Enter") { this.confirmEdit() }
       else if (key === "Escape") { this.cancelAction() }
     });
+    
+    // editTimeInputBox.focus();
+    // // cancel when losing focus
+    // editTimeInputBox.addEventListener('focusout', console.log(`omg it's happening`));
   }
 
   remove() {
@@ -176,7 +180,6 @@ function addTime() {
     const newTimeEntry = new TimeEntry(timeValue, newTimeLi);
     
     newTimeLi.appendChild(newTimeEntry);
-    // timeListUl.appendChild(newTimeLi);
     timeListUl.insertBefore(newTimeLi, timeListUl.children[0]);
     newTimeInputBox.value = '';
     updateAverageTime();
@@ -249,7 +252,7 @@ window.onload = () => {
   // addTime();
   // newTimeInputBox.value = "05:00";
   // addTime();
-  let x = 100
+  let x = 0
   for (i = 0; i < x; i++) {
     newTimeInputBox.value = formatTime(String(Math.floor(Math.random() * 2000) + 1));
     addTime();

@@ -18,66 +18,57 @@ h1 {
 .container {
   display: flex;
   flex-direction: column;
+  gap: 1em;
   /* justify-content: stretch; */
   max-height: 100dvh;
 }
 .main-input,
-.time-list-panel {
-  display: flex;
-  flex-direction: column;
+.time-list-container {
   margin: 0 auto;
   min-width: 222px;
   width: 20dvw;
   max-width: 400px;
-  /* test */
-  /* border: 1px solid red; */
 }
-.time-list-panel {
-  flex-grow: 1;
+.main-input,
+.time-list-item div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 2em;
+  /* border: 1px solid blueviolet; */
+}
+.time-list-container {
   overflow-y: auto;
+}
+.time-list-item div span,
+.time-list-item div input[type='text'] {
+  flex-grow: 1;
+}
+.time-list-item div input[type='text'] {
+  width: 1px;
 }
 #timeList {
   list-style-type: none;
   padding: 0;
 }
-.time-list-item button,
-.main-input input[type="text"],
-.main-input button {
-  padding: 0.8em;
-}
-.time-list-item,
-.main-input {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-#newTimeInput,
-.time-list-item span,
-.time-list-item input[type="text"] {
-  flex-grow: 1;
-}
-
-
-
-
 
 
 
 
 .time-list-button {
-  /* display: none; */
+  display: none;
 }
 .time-list-item:hover .time-list-button {
-  /* display: block; */
+  display: block;
 }
 .result-panel {
   font-size: 2em;
   width: 100%;
   padding: 0.4em 0;
-  /* position: sticky; */
-  /* bottom: 0; */
   background: rgb(0,18,34);
   background: radial-gradient(circle, rgba(0,18,34,1) 0%, rgba(15,48,77,1) 30%, rgba(88,116,141,1) 100%);
+  position: sticky;
+  bottom: 0;
 }
 .result-panel h6,
 .result-panel div {
