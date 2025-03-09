@@ -19,8 +19,22 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  /* justify-content: stretch; */
   max-height: 100dvh;
+}
+.main-input {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  height: 3em;
+}
+.main-input input[type="text"] {
+  width: 0px;
+  flex: auto;
+}
+.main-input button {
+  width: fit-content;
+  flex: 0;
 }
 .main-input,
 .time-list-container {
@@ -29,13 +43,17 @@ h1 {
   width: 20dvw;
   max-width: 400px;
 }
-.main-input,
 .time-list-item div {
   display: flex;
   flex-direction: row;
+  justify-content: stretch;
   align-items: center;
   height: 2em;
   /* border: 1px solid blueviolet; */
+}
+.main-input button {
+  height: 100%;
+  text-wrap: nowrap;
 }
 .time-list-container {
   overflow-y: auto;
@@ -43,13 +61,15 @@ h1 {
 .time-list-item div span,
 .time-list-item div input[type='text'] {
   flex-grow: 1;
-}
-.time-list-item div input[type='text'] {
-  width: 1px;
+  width:0;
 }
 #timeList {
   list-style-type: none;
   padding: 0;
+}
+#newTimeInput {
+  height: 100%;
+  padding: 0 1em;
 }
 
 
