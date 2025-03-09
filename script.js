@@ -247,14 +247,29 @@ function preventNewTime(disableNewTime) {
 }
 
 // TEST CODE BLOCK
-window.onload = () => {
-  // newTimeInputBox.value = "10:00";
-  // addTime();
-  // newTimeInputBox.value = "05:00";
-  // addTime();
-  let x = 50
-  for (i = 0; i < x; i++) {
+
+const testFunc = (x) => {
+  let i = 0;
+  const addRandTime = setInterval(() => {
+    if (i < x) i++;
+    else {
+      clearInterval(addRandTime);
+      return;
+    }
     newTimeInputBox.value = formatTime(String(Math.floor(Math.random() * 2000) + 1));
     addTime();
-  }
+  }, 10);
 }
+
+window.onload = () => {
+  // option A
+  // testFunc(30);
+  // option B
+  // const testListSize = prompt("Enter number of test values: ", "0");
+  // if (testListSize === null || testListSize === "" || isNaN(testListSize)) {
+  //   alert("Invalid input. Please try again.");
+  //   location.reload();
+  // } else {
+  //   testFunc(Number(testListSize));
+  // }
+};

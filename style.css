@@ -9,6 +9,33 @@ body {
   background-color: var(--bg);
   color: #ffffff;
   font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  height: 100dvh;
+  background: linear-gradient(to bottom, #2d91c2 0%,#1e528e 100%);
+}
+.start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: auto;
+  gap: 0.5em;
+}
+.start button {
+  height: 3em;
+  border-radius: 0.5em;
+  border: none;
+  transition: 0.2s background-color;
+}
+.start button:hover {
+  background-color: hsl(200, 66%, 64%);
+}
+.start button:active {
+  background-color: hsl(212, 65%, 34%);
 }
 h1 {
   margin: 0 auto;
@@ -19,10 +46,11 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  max-height: 100dvh;
+  padding: 1em 0;
+  flex: 1 1 0;
+  background: linear-gradient(to bottom, hsl(200, 62%, 27%) 0%,hsl(212, 65%, 17%) 100%);
 }
 .main-input {
-  /* border: 1px solid red; */
   display: flex;
   align-items: stretch;
   justify-content: stretch;
@@ -40,8 +68,12 @@ h1 {
 .time-list-container {
   margin: 0 auto;
   min-width: 222px;
-  width: 20dvw;
+  width: auto;
   max-width: 400px;
+}
+.time-list-container {
+  overflow-y: auto;
+  flex: 1 1 0;
 }
 .time-list-item div {
   display: flex;
@@ -49,23 +81,22 @@ h1 {
   justify-content: stretch;
   align-items: center;
   height: 2.5em;
-  border-top: 1px solid rgba(88,116,141,1);
+  border-bottom: 1px solid rgba(88,116,141,1);
 }
 .main-input button {
   height: 100%;
   text-wrap: nowrap;
 }
-.time-list-container {
-  overflow-y: auto;
-}
 .time-list-item div span,
 .time-list-item div input[type='text'] {
   flex-grow: 1;
   width:0;
+  padding: 0 1em;
 }
 #timeList {
   list-style-type: none;
   padding: 0;
+  height: fit-content;
 }
 #newTimeInput {
   height: 100%;
@@ -76,21 +107,21 @@ h1 {
 
 
 .time-list-button {
-  opacity: 0%;
-  transition: opacity 0.2s;
-  transition-delay: 0.3s;
+  display: none;
+  /* opacity: 0%; */
+  /* transition: opacity 0.1s; */
+  /* transition-delay: 0.2s; */
 }
 .time-list-item:hover .time-list-button {
-  opacity: 100%;
+  display: block;
+  /* opacity: 100%; */
 }
 .result-panel {
   font-size: 2em;
   width: 100%;
   padding: 0.4em 0;
   background: rgb(0,18,34);
-  background: radial-gradient(circle, rgba(0,18,34,1) 0%, rgba(15,48,77,1) 30%, rgba(88,116,141,1) 100%);
-  position: sticky;
-  bottom: 0;
+  background: radial-gradient(circle, hsl(212, 91%, 17%) 0%, hsl(212, 65%, 34%) 30%, hsl(200, 62%, 47%) 100%);
 }
 .result-panel h6,
 .result-panel div {
@@ -113,7 +144,6 @@ ul {
   width: 222px;
   height: 100px;
   background-color: blue;
-  /* position: absolute; */
   top: 0;
   margin: auto;
 }
