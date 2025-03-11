@@ -141,6 +141,7 @@ class TimeEntry {
     this.parentNode.appendChild(this.normalDiv);
     updateAverageTime();
     preventNewTime(false)
+    // add checking if string is empty (it results in NaN output)
   }
 
   confirmRemove() {
@@ -245,6 +246,18 @@ function preventNewTime(disableNewTime) {
     newTimeInputBox.focus();
   }
 }
+
+// COPYING RESULTS
+
+const getResultsBtn = document.getElementById('js-get-results-btn');
+getResultsBtn.addEventListener('click', () => {
+  // getResultsBtn.innerHTML = `<h6>Copied!</h6>`;
+  // todo:
+  // do not resize results panel
+  // add copy function itself
+  // text 'copied' should go back to default contents after a few seconds
+})
+
 
 // TEST CODE BLOCK
 
