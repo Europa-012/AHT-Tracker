@@ -172,6 +172,11 @@ const timeListUl = document.getElementById('timeList');
 newTimeButton.addEventListener('click', addTime);
 newTimeInputBox.addEventListener('keypress', e => { if (e.key === 'Enter') addTime(); });
 
+// results panel at the bottom is a button. clicking it copies current AHT in seconds
+const getResultsBtn = document.getElementById('js-get-results-btn');
+let averageTimeText = document.getElementById('averageTime');
+let averageSeconds = 0;
+
 // creates a new entry in the timeList through the HTML
 function addTime() {
   const timeValue = newTimeInputBox.value;
@@ -191,8 +196,7 @@ function addTime() {
 function updateAverageTime() {
   let timeList = document.getElementById('timeList').getElementsByTagName('li');
   let totalSeconds = 0;
-  let averageTime = document.getElementById('averageTime');
-  if (timeList.length == 0) return averageTime.textContent = '00:00:00';
+  if (timeList.length == 0) return averageTimeText.textContent = '0:00:00';
   for (let time of timeList) {
     let parts = time.textContent.split(':').reverse();
     let seconds = 0;
@@ -205,11 +209,11 @@ function updateAverageTime() {
     seconds += parseInt(parts[0], 10);
     totalSeconds += seconds;
   }
-  let averageSeconds = totalSeconds / timeList.length;
+  averageSeconds = totalSeconds / timeList.length;
   let h = Math.floor(averageSeconds / 3600);
   let m = Math.floor((averageSeconds % 3600) / 60);
   let s = Math.floor(averageSeconds % 60);
-  averageTime.textContent = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  averageTimeText.textContent = `${h.toString().padStart(1, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')} (${Math.round(averageSeconds)}s)`;
 }
 
 // input: string, return: formattedTime (H:MM:SS)
@@ -247,11 +251,16 @@ function preventNewTime(disableNewTime) {
   }
 }
 
-// COPYING RESULTS
-
-const getResultsBtn = document.getElementById('js-get-results-btn');
+// COPYING RESULTS to clipboard in seconds
 getResultsBtn.addEventListener('click', () => {
-  // getResultsBtn.innerHTML = `<h6>Copied!</h6>`;
+  console.log(averageSeconds);
+  if (averageSeconds) {
+    navigator.clipboard.writeText(Math.round(averageSeconds));
+    averageTimeText.textContent = `Copied!`;
+    setTimeout( () => {
+    updateAverageTime();
+  }, 1000);
+  }
   // todo:
   // do not resize results panel
   // add copy function itself
