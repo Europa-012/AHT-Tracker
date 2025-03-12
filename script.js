@@ -259,16 +259,12 @@ getResultsBtn.addEventListener('click', () => {
     averageTimeText.textContent = `Copied!`;
     setTimeout( () => {
     updateAverageTime();
-  }, 1000);
+  }, 1500);
   }
-  // todo:
-  // do not resize results panel
-  // add copy function itself
-  // text 'copied' should go back to default contents after a few seconds
 })
 
 
-// TEST CODE BLOCK
+// TEST CODE BLOCK (generates test entries)
 
 const testFunc = (x) => {
   let i = 0;

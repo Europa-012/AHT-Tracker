@@ -150,10 +150,6 @@ h1 {
   display: block;
   width: fit-content;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
 #startButton {
   width: 12em;
 }
@@ -169,8 +165,51 @@ ul {
   margin: auto;
 }
 
+/* tooltip */
 
+.tooltip {
+  position: absolute;
+  display: inline-block;
+  border: 1px solid #eee;
+  top: 0.4em;
+  right: 0.4em;
+  padding: 0.2em 0.5em;
+  border-radius: 1em;
+}
 
+.tooltip .tooltiptext {
+  font-style: italic;
+  visibility: visible;
+  background-color: #555;
+  color: #eee;
+  text-align: left;
+  border-radius: 6px;
+  width: 40dvw;
+  padding: 0.5em 0.5em;
+  position: absolute;
+  z-index: 1;
+  top: 175%;
+  right: 0%;
+  margin-left: -60px;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  right: 0.5em;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #555 transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
 
 
 /* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
