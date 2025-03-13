@@ -153,17 +153,12 @@ h1 {
 #startButton {
   width: 12em;
 }
-
-
-
-
-#test {
-  width: 222px;
-  height: 100px;
-  background-color: blue;
-  top: 0;
-  margin: auto;
+#popupMsg {
+  visibility: hidden;
+  position: relative;
+  top: -1em;
 }
+
 
 /* tooltip */
 

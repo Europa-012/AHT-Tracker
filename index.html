@@ -7,23 +7,19 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="start">
+    <div class="start" id="startDiv">
       <h1>AHT Tracker</h1>
       <button id="startButton" onclick="startTool();"><h3>Start</h3></button>
+      <br>
+      <em id="popupMsg" style="visibility: hidden;">You may now close this window.</em>
     </div>
   </body>
   <script>
-    window.onload = () => {
-      startTool();
-    }
+    window.onload = startTool();
     function startTool() {
-      window.open('aht-tracker-tool.html', '', 'width=350px, height=650px, resizable=yes');
-      // console.log('test');
-      // const startDiv = document.getElementById('start');
-      // this.parentNode.innerHTML = '';
-      // const newText = document.createElement('h6');
-      // newText.textContent = 'You may now close this window.'
-      // startDiv.appendChild(newText);
+      if (window.open('aht-tracker-tool.html', '', 'width=350px, height=650px, resizable=yes')) {
+        document.getElementById('popupMsg').style.visibility = 'visible';
+      }
     }
   </script>
 </html>
