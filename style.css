@@ -179,19 +179,20 @@ h1 {
 
 .tooltip .tooltiptext {
   font-style: italic;
-  visibility: visible;
+  visibility: hidden;
   background-color: #555;
   color: #eee;
   text-align: left;
   border-radius: 6px;
-  width: 40dvw;
+  width: 95dvw;
+  max-width: 30em;
   padding: 0.5em 0.5em;
   position: absolute;
   z-index: 1;
   top: 175%;
   right: 0%;
   margin-left: -60px;
-  opacity: 1;
+  opacity: 0;
   transition: opacity 0.3s;
 }
 
